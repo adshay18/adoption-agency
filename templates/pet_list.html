@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}All Pets{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    {% for pet in pets %}
+    <div class="card col-3">
+        <img src="{{pet.photo_url}}" class="card-img-top" alt="{{pet.name}} the {{pet.species}}">
+        <div class="card-body">
+          <h5 class="card-title">{{pet.name}}</h5>
+            {% if pet.available%}
+            <p class="card-text">{{pet.name}} <b>is available!</b></p>
+            {% else %}
+            <p class="card-text">{{pet.name}} is not currently available.</p>
+            {% endif %}
+            {% if pet.notes %}
+                <p class="card-text">{{pet.notes}}</p>
+            {% endif %}
+          <a href="/{{pet.id}}" class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+    <a href="/add" class="btn btn-success btn-lg">Add Pet</a>
+{% endblock %}
